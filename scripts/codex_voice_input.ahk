@@ -17,10 +17,10 @@ global cvInputPath := ""
 global cvOutputPath := ""
 global cvLastMButtonTick := 0
 
-; Right Alt behavior:
-; - Hold RAlt: dictate while held, release to let Codex polish and paste.
-; - Double-tap RAlt: start hands-free dictation.
-; - Press RAlt again in hands-free mode: finish, let Codex polish, and paste.
+; Hold hotkey behavior:
+; - Hold the configured key: dictate while held, release to let Codex polish and paste.
+; - Double-tap it: start hands-free dictation.
+; - Press it again in hands-free mode: finish, let Codex polish, and paste.
 Hotkey, %cvHoldHotkey%, CV_HoldHotkey
 Hotkey, %cvPadHotkey%, CV_OpenDictationPad
 
@@ -40,8 +40,8 @@ CV_HoldHotkey:
         SetTimer, CV_CancelShortTap, Off
         cvPendingTap := false
         cvHandsFree := true
-        TrayTip, Codex Voice Input, Hands-free dictation. Press Right Alt again to paste., 3, 1
-        KeyWait, RAlt
+        TrayTip, Codex Voice Input, Hands-free dictation. Press %cvHoldHotkey% again to paste., 3, 1
+        KeyWait, %cvHoldHotkey%
         return
     }
 
@@ -50,7 +50,7 @@ CV_HoldHotkey:
         cvPendingTap := false
         cvDownTick := A_TickCount
         Gosub, CV_StartDictation
-        KeyWait, RAlt
+        KeyWait, %cvHoldHotkey%
 
         if (!cvActive || cvHandsFree) {
             return
@@ -72,7 +72,7 @@ CV_OpenDictationPad:
     if (!cvActive) {
         cvHandsFree := true
         Gosub, CV_StartDictation
-        TrayTip, Codex Voice Input, Dictation pad opened. Press Right Alt to paste., 3, 1
+        TrayTip, Codex Voice Input, Dictation pad opened. Press %cvHoldHotkey% to paste., 3, 1
     }
 return
 
