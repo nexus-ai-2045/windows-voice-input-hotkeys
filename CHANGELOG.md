@@ -6,6 +6,8 @@
 - Added security guidance for voice dictation workflows.
 - Added contribution guidance.
 - Added troubleshooting notes.
+- Added public release guide.
+- Added mouse mapping notes for wheel double-click workflows.
 
 ## 0.1.0
 

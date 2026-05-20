@@ -73,6 +73,8 @@ Small fixes and workflow notes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.m
 - [SECURITY.md](SECURITY.md): sensitive data and reporting guidance.
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md): setup and runtime fixes.
 - [CHANGELOG.md](CHANGELOG.md): notable changes.
+- [docs/PUBLIC_RELEASE.md](docs/PUBLIC_RELEASE.md): exact steps for switching from private to public.
+- [docs/MOUSE_MAPPINGS.md](docs/MOUSE_MAPPINGS.md): notes on mouse-wheel double-click mappings.
 
 ## Notes
 
