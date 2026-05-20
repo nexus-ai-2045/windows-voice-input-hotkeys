@@ -87,6 +87,7 @@ Small fixes and workflow notes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.m
 
 ## Project Files
 
+- [TEST_PLAN.md](TEST_PLAN.md): local Windows test checklist.
 - [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md): public-release gate.
 - [SECURITY.md](SECURITY.md): sensitive data and reporting guidance.
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md): setup and runtime fixes.

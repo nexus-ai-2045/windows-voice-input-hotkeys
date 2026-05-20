@@ -16,6 +16,7 @@ Use this before changing the repository from private to public.
 - Confirm `docs/PUBLIC_RELEASE.md` has the current public-release steps.
 - Confirm `docs/HOTKEY_CONFIGURATION.md` explains how to customize hotkeys without editing scripts.
 - Confirm mouse-specific behavior is documented without breaking normal middle-click behavior.
+- Confirm `TEST_PLAN.md` passes on a Windows machine.
 - Confirm scripts do not run destructive commands or change system settings without making that behavior obvious.
 - Test both documented workflows on a Windows machine.
 

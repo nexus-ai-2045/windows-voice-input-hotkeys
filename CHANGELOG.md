@@ -5,6 +5,7 @@
 - Added configurable local `.ini` files for hotkey preferences.
 - Added built-in mouse-wheel double-click support.
 - Added hotkey configuration documentation.
+- Added Windows test plan.
 - Added private-first open source readiness documentation.
 - Added security guidance for voice dictation workflows.
 - Added contribution guidance.
