@@ -24,3 +24,10 @@ This is a good standalone repository because it has one clear purpose:
 - Confirm you are comfortable publishing under the MIT license.
 - Confirm the Codex CLI command works on the target Windows machine.
 - Decide later whether to make the repository public after private testing.
+
+## Open source readiness
+
+- `OPEN_SOURCE_CHECKLIST.md` now tracks the public-release gate.
+- `SECURITY.md` explains sensitive dictation risks and security reporting.
+- `CONTRIBUTING.md` explains what changes belong here and what must stay out.
+- README now links to the public-release checklist and privacy notes.
