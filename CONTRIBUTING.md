@@ -1,29 +1,29 @@
 # Contributing
 
-Thanks for helping improve Windows Voice Input Hotkeys.
+Windows Voice Input Hotkeys を良くするための貢献を歓迎します。
 
-## Good contributions
+## 歓迎する変更
 
-- Fixes for AutoHotkey v1 or v2 compatibility.
-- Clearer setup instructions.
-- Safer defaults around clipboard, temporary files, or Codex invocation.
-- Troubleshooting notes for Windows voice typing.
-- Small workflow improvements that keep the project easy to understand.
+- AutoHotkey v1 / v2 互換性の修正。
+- セットアップ手順の改善。
+- clipboard、一時ファイル、Codex 呼び出しまわりの安全な初期値。
+- Windows 音声入力のトラブルシュート追加。
+- repo の見通しを保てる小さなワークフロー改善。
 
-## Keep this repository generic
+## この repo に入れないもの
 
-Please avoid adding:
+次のものは追加しないでください。
 
-- Personal file paths.
-- Machine-specific device names.
-- Screenshots containing private content.
-- API keys, tokens, logs, or transcripts.
-- Large binaries or generated media.
+- 個人のファイルパス。
+- 個別端末にしかないデバイス名。
+- 個人情報を含むスクリーンショット。
+- API キー、トークン、ログ、音声入力の書き起こし。
+- 大きなバイナリや生成済みメディア。
 
-## Development notes
+## 開発メモ
 
-- `scripts\voice-dictation-hotkey.ahk` uses AutoHotkey v2.
-- `scripts\codex_voice_input.ahk` uses AutoHotkey v1.
-- `scripts\codex_text_polish.ps1` expects the `codex` command to be available.
+- `scripts\voice-dictation-hotkey.ahk` は AutoHotkey v2 用です。
+- `scripts\codex_voice_input.ahk` は AutoHotkey v1.1 用です。
+- `scripts\codex_text_polish.ps1` は `codex` コマンドが使える前提です。
 
-Before opening a pull request, test the script you changed on Windows and update the README if the user-facing behavior changed.
+Pull request を開く前に、変更したスクリプトを Windows 実機で確認してください。ユーザーから見える挙動が変わった場合は README またはトラブルシュートも更新してください。

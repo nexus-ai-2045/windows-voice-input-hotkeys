@@ -1,9 +1,9 @@
 [Hotkeys]
-; AutoHotkey v2 syntax.
+; AutoHotkey v2 の構文です。
 ; ^ = Ctrl, ! = Alt, + = Shift, # = Win
 VoiceTypingHotkey=^!Space
 
-; 1 enables mouse-wheel double-click to toggle Windows voice typing.
-; The normal middle-click is still passed through to the active app.
+; 1 にすると、マウスホイールのダブルクリックで Windows 音声入力を切り替えます。
+; 通常の中クリックは active app へ渡します。
 EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350

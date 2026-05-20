@@ -1,10 +1,10 @@
-# Public Release Guide
+# Public 化手順
 
-This repository is intended to be private-first. Use this guide when deciding whether to make it public.
+この repo は private-first で育てます。public に変える判断をするときは、この手順を使います。
 
-## 1. Run the local preflight
+## 1. ローカル preflight を実行する
 
-From the repository root:
+repo root で実行します。
 
 ```powershell
 git status --short --branch
@@ -12,72 +12,72 @@ git log --oneline --decorate -5
 rg -n -i "(sk-[A-Za-z0-9]|api[_-]?key|token|secret|password|passwd|authorization|bearer|client_secret|private_key|D:\\\\|Dropbox|OneDrive|Realtek|Steinberg|Yamaha|Waves)" .
 ```
 
-Expected:
+期待する状態:
 
-- Working tree is clean.
-- Recent commits are intentional.
-- Search results are only documentation that warns about sensitive data, not actual sensitive data.
+- working tree が clean。
+- 直近 commit が意図したもの。
+- 検索結果は、機密情報への注意を書いた documentation だけ。実際の機密情報は含まれていない。
 
-## 2. Review included files
+## 2. 含まれているファイルを確認する
 
-Every file should be useful outside one personal machine.
+すべてのファイルが、個人の 1 台の PC の外でも役立つことを確認します。
 
-Keep:
+残すもの:
 
-- Generic scripts.
-- Generic docs.
-- Security and contribution guidance.
-- Troubleshooting notes.
+- 汎用 script。
+- 汎用 docs。
+- security / contribution guidance。
+- troubleshooting notes。
 
-Remove before public:
+public 前に消すもの:
 
-- Private transcripts.
-- Local logs.
-- Screenshots with private content.
-- Machine inventory.
-- Device-specific personal configuration.
-- Local-only filesystem paths.
+- 非公開 transcript。
+- ローカル log。
+- 個人情報を含む screenshot。
+- 端末 inventory。
+- 個別 device 固有の personal configuration。
+- ローカル専用 filesystem path。
 
-## 3. Test the workflows
+## 3. ワークフローをテストする
 
-Test on Windows:
+Windows 実機で確認します。
 
-- Run `scripts\voice-dictation-hotkey.ahk` with AutoHotkey v2.
-- Press `Ctrl + Alt + Space` in a text field.
-- Run `scripts\codex_voice_input.ahk` with AutoHotkey v1.
-- Confirm dictation opens, Codex polishing runs, and text returns to the original app.
+- AutoHotkey v2 で `scripts\voice-dictation-hotkey.ahk` を実行する。
+- テキスト入力欄で `Ctrl + Alt + Space` を押す。
+- AutoHotkey v1.1 で `scripts\codex_voice_input.ahk` を実行する。
+- 音声入力が開き、Codex 整形が走り、元のアプリへ貼り戻されることを確認する。
 
-Record any rough edges in `TROUBLESHOOTING.md` before public release.
+気になる挙動があれば、public 化前に `TROUBLESHOOTING.md` へ記録します。
 
-## 4. Prepare GitHub settings
+## 4. GitHub 設定を準備する
 
-Recommended settings:
+推奨設定:
 
 - Description: `AutoHotkey shortcuts for Windows voice typing and Codex-polished dictation.`
 - Topics: `windows`, `autohotkey`, `voice-input`, `dictation`, `codex`
-- Issues: enabled.
-- Discussions: optional.
-- Wiki: disabled unless needed.
-- Security advisories: enabled if available.
+- Issues: enabled。
+- Discussions: optional。
+- Wiki: 必要になるまで disabled。
+- Security advisories: 使えるなら enabled。
 
-## 5. Optional first release
+## 5. 任意で最初の release を作る
 
-After testing, create a lightweight release:
+テスト後、軽い release tag を作れます。
 
 ```powershell
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-Use the release notes from `CHANGELOG.md`.
+Release notes は `CHANGELOG.md` を使います。
 
-## 6. Change visibility
+## 6. Visibility を変える
 
-In GitHub:
+GitHub で操作します。
 
-1. Open repository settings.
-2. Go to the danger zone.
-3. Change visibility from private to public.
-4. Re-read GitHub's warning before confirming.
+1. Repository settings を開く。
+2. Danger Zone へ移動する。
+3. Visibility を private から public に変える。
+4. GitHub の warning を読み直してから確定する。
 
-After the change, open the public page in a private browser window and confirm the README gives enough context without relying on private knowledge.
+変更後、private browser window で public page を開き、README だけで文脈が伝わることを確認します。

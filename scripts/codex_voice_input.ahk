@@ -1,4 +1,4 @@
-#NoEnv
+﻿#NoEnv
 #SingleInstance Force
 SendMode Input
 SetWorkingDir %A_ScriptDir%
@@ -17,10 +17,10 @@ global cvInputPath := ""
 global cvOutputPath := ""
 global cvLastMButtonTick := 0
 
-; Hold hotkey behavior:
-; - Hold the configured key: dictate while held, release to let Codex polish and paste.
-; - Double-tap it: start hands-free dictation.
-; - Press it again in hands-free mode: finish, let Codex polish, and paste.
+; HoldHotkey の動き:
+; - 押している間だけ音声入力し、離すと Codex で整えて貼り付けます。
+; - ダブルタップするとハンズフリー音声入力を開始します。
+; - ハンズフリー状態でもう一度押すと、Codex で整えて貼り付けます。
 Hotkey, %cvHoldHotkey%, CV_HoldHotkey
 Hotkey, %cvPadHotkey%, CV_OpenDictationPad
 
@@ -40,7 +40,7 @@ CV_HoldHotkey:
         SetTimer, CV_CancelShortTap, Off
         cvPendingTap := false
         cvHandsFree := true
-        TrayTip, Codex Voice Input, Hands-free dictation. Press %cvHoldHotkey% again to paste., 3, 1
+        TrayTip, Codex Voice Input, ハンズフリー状態です。貼り付けるには %cvHoldHotkey% をもう一度押してください。, 3, 1
         KeyWait, %cvHoldHotkey%
         return
     }
@@ -67,12 +67,12 @@ CV_HoldHotkey:
     }
 return
 
-; Fallback: open the temporary dictation pad without using Right Alt timing.
+; fallback: HoldHotkey の tap 判定を使わず一時入力欄を開きます。
 CV_OpenDictationPad:
     if (!cvActive) {
         cvHandsFree := true
         Gosub, CV_StartDictation
-        TrayTip, Codex Voice Input, Dictation pad opened. Press %cvHoldHotkey% to paste., 3, 1
+        TrayTip, Codex Voice Input, 一時入力欄を開きました。貼り付けるには %cvHoldHotkey% を押してください。, 3, 1
     }
 return
 
@@ -82,7 +82,7 @@ CV_MouseWheelClick:
         if (!cvActive) {
             cvHandsFree := true
             Gosub, CV_StartDictation
-            TrayTip, Codex Voice Input, Dictation pad opened. Press %cvHoldHotkey% to paste., 3, 1
+            TrayTip, Codex Voice Input, 一時入力欄を開きました。貼り付けるには %cvHoldHotkey% を押してください。, 3, 1
         }
     } else {
         cvLastMButtonTick := A_TickCount
@@ -101,13 +101,13 @@ CV_StartDictation:
     Gui, CV:+AlwaysOnTop +ToolWindow -MinimizeBox
     Gui, CV:Margin, 12, 12
     Gui, CV:Font, s11, Yu Gothic UI
-    Gui, CV:Add, Text,, Windows voice typing is listening here. Codex will polish and paste it back.
+    Gui, CV:Add, Text,, ここで Windows 音声入力を使います。Codex で整えて元のアプリへ貼り戻します。
     Gui, CV:Add, Edit, vCVText w560 h150
     Gui, CV:Show,, Codex Voice Input
     GuiControl, CV:Focus, CVText
     Sleep, 180
     Send, {LWin Down}h{LWin Up}
-    TrayTip, Codex Voice Input, Dictate now..., 2, 1
+    TrayTip, Codex Voice Input, いま話してください..., 2, 1
 return
 
 CV_FinishAndPaste:
@@ -133,7 +133,7 @@ CV_FinishAndPaste:
 
     rawText := Trim(rawText)
     if (rawText = "") {
-        TrayTip, Codex Voice Input, No dictated text., 3, 2
+        TrayTip, Codex Voice Input, 音声入力されたテキストがありません。, 3, 2
         return
     }
 
@@ -141,15 +141,15 @@ CV_FinishAndPaste:
     FileDelete, %cvOutputPath%
     FileAppend, %rawText%, %cvInputPath%, UTF-8
 
-    TrayTip, Codex Voice Input, Codex is polishing..., 3, 1
+    TrayTip, Codex Voice Input, Codex で整えています..., 3, 1
     RunWait, powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%A_ScriptDir%\codex_text_polish.ps1" -InputPath "%cvInputPath%" -OutputPath "%cvOutputPath%", %A_ScriptDir%, Hide
     if (ErrorLevel = 0) {
         Send, ^v
-        TrayTip, Codex Voice Input, Pasted., 2, 1
+        TrayTip, Codex Voice Input, 貼り付けました。, 2, 1
     } else {
         SetClipboard(rawText)
         Send, ^v
-        TrayTip, Codex Voice Input, Codex failed. Pasted raw dictation., 5, 2
+        TrayTip, Codex Voice Input, Codex 整形に失敗しました。元の音声入力を貼り付けました。, 5, 2
     }
 return
 
@@ -159,7 +159,7 @@ CV_CancelShortTap:
         cvPendingTap := false
         Send, {LWin Down}h{LWin Up}
         Gui, CV:Destroy
-        TrayTip, Codex Voice Input, Canceled., 1, 1
+        TrayTip, Codex Voice Input, キャンセルしました。, 1, 1
     }
 return
 

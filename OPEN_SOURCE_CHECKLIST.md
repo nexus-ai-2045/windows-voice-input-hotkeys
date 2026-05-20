@@ -1,43 +1,43 @@
-# Open Source Checklist
+# Public 化チェックリスト
 
-Use this before changing the repository from private to public.
+この repo を private から public に変える前に確認します。
 
-## Must be done before public release
+## Public 化前に必須
 
-- Confirm the repository contains no API keys, tokens, passwords, private keys, or credentials.
-- Confirm the repository contains no local-only personal paths such as Dropbox, OneDrive, or machine-specific home directories.
-- Confirm the repository contains no private screenshots, logs, transcripts, device inventories, or support dumps.
-- Confirm the README clearly says what the project does, who it is for, and how to run it.
-- Confirm the license is intentional. This repository currently uses MIT.
-- Confirm security reporting instructions exist in `SECURITY.md`.
-- Confirm contribution expectations exist in `CONTRIBUTING.md`.
-- Confirm troubleshooting notes exist in `TROUBLESHOOTING.md`.
-- Confirm issue and pull request templates warn against sharing sensitive dictated content.
-- Confirm `docs/PUBLIC_RELEASE.md` has the current public-release steps.
-- Confirm `docs/HOTKEY_CONFIGURATION.md` explains how to customize hotkeys without editing scripts.
-- Confirm mouse-specific behavior is documented without breaking normal middle-click behavior.
-- Confirm `TEST_PLAN.md` passes on a Windows machine.
-- Confirm scripts do not run destructive commands or change system settings without making that behavior obvious.
-- Test both documented workflows on a Windows machine.
+- API キー、トークン、パスワード、秘密鍵、認証情報が含まれていないこと。
+- Dropbox、OneDrive、個人のホームディレクトリなど、ローカル専用の個人パスが含まれていないこと。
+- 個人情報を含むスクリーンショット、ログ、書き起こし、端末一覧、サポート用 dump が含まれていないこと。
+- README だけで、何をする repo か、誰向けか、どう実行するかが分かること。
+- ライセンスが意図したものになっていること。この repo は MIT を使います。
+- `SECURITY.md` にセキュリティ報告方針があること。
+- `CONTRIBUTING.md` に貢献時の注意があること。
+- `TROUBLESHOOTING.md` によくある詰まりどころがあること。
+- issue / pull request テンプレートで、機密の音声入力テキストを共有しないよう注意していること。
+- `docs/PUBLIC_RELEASE.md` に現在の public 化手順があること。
+- `docs/HOTKEY_CONFIGURATION.md` で、スクリプトを直接編集せずホットキーを変える方法が分かること。
+- マウスホイールのダブルクリック仕様が、通常の中クリックとの関係も含めて説明されていること。
+- `TEST_PLAN.md` を Windows 実機で通していること。
+- スクリプトが破壊的なコマンドを実行したり、分かりにくい形でシステム設定を変えたりしないこと。
+- README に載せた 2 つの使い方を Windows 実機で確認していること。
 
-## Nice to have before public release
+## Public 化前にできればやる
 
-- Add screenshots or a short GIF showing the dictation pad.
-- Add a table of supported AutoHotkey versions.
-- Add a release tag such as `v0.1.0`.
+- 一時入力欄のスクリーンショットまたは短い GIF を追加する。
+- 対応 AutoHotkey バージョンの表を追加する。
+- `v0.1.0` のような release tag を作る。
 
-## Public release settings
+## GitHub 設定案
 
-- Visibility: public only after the checks above pass.
+- Visibility: 上の確認が終わってから public。
 - Description: `AutoHotkey shortcuts for Windows voice typing and Codex-polished dictation.`
 - Topics: `windows`, `autohotkey`, `voice-input`, `dictation`, `codex`
-- Features: issues enabled, discussions optional, wiki disabled unless needed.
+- Features: issues は有効、discussions は任意、wiki は必要になるまで無効。
 
-## Public release decision
+## Public 化判断
 
-Before flipping visibility, answer these:
+公開ボタンを押す前に、次へ答えます。
 
-1. Would a stranger understand what this does from the README?
-2. Would a stranger avoid leaking sensitive text after reading the privacy section?
-3. Is every included file useful to someone outside this machine?
-4. Is there anything here that would be uncomfortable if indexed by search engines?
+1. 初見の人が README だけで用途を理解できるか。
+2. privacy セクションを読めば、機密テキストを漏らさない使い方が分かるか。
+3. 含まれている全ファイルが、この PC の外にいる人にも役立つか。
+4. 検索エンジンに index されて困るものが残っていないか。

@@ -1,30 +1,30 @@
-# Security Policy
+# セキュリティポリシー
 
-## Reporting a vulnerability
+## 脆弱性の報告
 
-If you find a security issue, please open a private report if GitHub security advisories are enabled for this repository. If private reporting is not available, open a minimal issue that does not include exploit details or secrets.
+セキュリティ上の問題を見つけた場合は、GitHub security advisories が有効なら private report を使ってください。private report が使えない場合は、攻撃手順や秘密情報を含めない最小限の issue を作成してください。
 
-## Sensitive data
+## 機密データ
 
-This project is a voice input helper. Depending on your local setup, dictated text can be processed by the Codex CLI and may leave the active application.
+この project は音声入力補助です。ローカル設定によっては、音声入力したテキストが Codex CLI で処理され、現在のアプリの外へ渡されます。
 
-Do not dictate or test with:
+次の内容を読み上げたり、テスト用に入力したりしないでください。
 
-- Passwords.
-- API keys or access tokens.
-- Private keys.
-- Recovery codes.
-- Customer or patient data.
-- Private transcripts or confidential work content.
+- パスワード。
+- API キーや access token。
+- 秘密鍵。
+- recovery code。
+- 顧客、患者、取引先などの機密情報。
+- 非公開の議事録や confidential な業務内容。
 
-## Repository hygiene
+## Repo の衛生管理
 
-This repository should not contain:
+この repo には次のものを含めません。
 
-- Real credentials.
-- Personal logs or transcripts.
-- Machine inventory dumps.
-- Local-only private paths.
-- Screenshots with private content.
+- 実在する認証情報。
+- 個人ログや書き起こし。
+- 端末 inventory dump。
+- ローカル専用の private path。
+- 個人情報を含むスクリーンショット。
 
-If sensitive data is accidentally committed, rotate the affected secret first, then rewrite or remove the affected history before making the repository public.
+機密情報を誤って commit した場合は、まず影響を受けた secret を rotate し、その後 public 化する前に履歴から削除または rewrite してください。

@@ -1,36 +1,36 @@
-name: Feature request
-description: Suggest a workflow improvement.
+name: 機能リクエスト
+description: Workflow 改善を提案する
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for suggesting an improvement. Keep examples generic and avoid private dictated text.
+        提案ありがとうございます。例は汎用的にし、private な音声入力テキストは避けてください。
   - type: textarea
     id: need
     attributes:
-      label: What workflow should improve?
-      description: Describe the user need, not just the implementation.
+      label: どの workflow を改善したいですか？
+      description: 実装案だけでなく、ユーザーの困りごとも書いてください。
     validations:
       required: true
   - type: textarea
     id: idea
     attributes:
-      label: Proposed behavior
-      description: What should happen?
+      label: 期待する挙動
+      description: どう動くとよいですか？
   - type: dropdown
     id: scope
     attributes:
       label: Scope
       options:
         - Hotkey mapping
-        - Dictation pad
+        - 一時入力欄
         - Codex polishing
         - Documentation
         - Other
   - type: textarea
     id: tradeoffs
     attributes:
-      label: Tradeoffs or conflicts
-      description: Mention known shortcut conflicts or app-specific concerns.
+      label: Tradeoff や衝突
+      description: 既知の shortcut 衝突や app 固有の懸念があれば書いてください。

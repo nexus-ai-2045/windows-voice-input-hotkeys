@@ -1,77 +1,83 @@
-# Troubleshooting
+# トラブルシュート
 
-## Windows voice typing does not start
+## Windows 音声入力が起動しない
 
-- Put the cursor in a normal text field before pressing the shortcut.
-- Press `Win + H` manually once to confirm Windows voice typing works outside this script.
-- Check Windows microphone permissions.
-- Restart the AutoHotkey script after changing keyboard or microphone settings.
+- ショートカットを押す前に、通常のテキスト入力欄へカーソルを置いてください。
+- まず `Win + H` を手動で押し、Windows 音声入力が単体で動くことを確認してください。
+- Windows のマイク権限を確認してください。
+- キーボード設定やマイク設定を変更した後は、AutoHotkey スクリプトを再起動してください。
 
-## `Ctrl + Alt + Space` conflicts with another app
+## `Ctrl + Alt + Space` が別アプリと衝突する
 
-Copy:
+次のファイルをコピーします。
 
 ```text
 scripts\voice-dictation-hotkey.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\voice-dictation-hotkey.ini
 ```
 
-Then edit:
+その後、次の値を編集します。
 
 ```ini
 VoiceTypingHotkey=^!Space
 ```
 
-For example:
+例:
 
 ```ini
 VoiceTypingHotkey=CapsLock
 ```
 
-## Mouse-wheel double click already starts dictation
+## マウスホイールのダブルクリックで音声入力が起動する
 
-Mouse-wheel double click is supported by default.
+マウスホイールのダブルクリックは、初期設定で有効です。
 
-To tune or disable it, edit the relevant local `.ini` file:
+調整または無効化したい場合は、使っているスクリプトに対応するローカル `.ini` を編集します。
 
 ```ini
 EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350
 ```
 
-Set `EnableMouseWheelDoubleClick=0` to disable it.
+無効化する場合:
 
-The normal middle-click is passed through, but some apps may still respond to the double middle-click before dictation starts. If that is a problem, disable the built-in mapping and use mouse software to send `Ctrl + Alt + Space` instead.
+```ini
+EnableMouseWheelDoubleClick=0
+```
 
-## Codex polishing does not run
+通常の中クリックはアプリへ渡します。ただし、対象アプリによっては音声入力が始まる前に 2 回分の中クリックへ反応することがあります。気になる場合は、この repo 側のマウス割り当てを無効にし、マウスドライバ側で `Ctrl + Alt + Space` を送る設定にしてください。
 
-- Confirm `codex` is available in PowerShell:
+## Codex の整形が動かない
+
+PowerShell で `codex` が使えることを確認します。
 
 ```powershell
 codex --version
 ```
 
-- Confirm the Codex CLI is already authenticated.
-- Run `scripts\codex_text_polish.ps1` manually with a small UTF-8 text file.
-- If PowerShell blocks the script, run from a trusted checkout and use a process-scoped execution policy:
+続けて確認すること:
+
+- Codex CLI のログインが済んでいること。
+- 小さな UTF-8 テキストファイルで `scripts\codex_text_polish.ps1` を手動実行できること。
+- PowerShell がスクリプト実行をブロックする場合は、信頼できる checkout から次のようにプロセス単位で実行ポリシーを緩めること。
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
-## Text is pasted into the wrong app
+## 違うアプリへ貼り付けられる
 
-- Wait until the dictation pad appears before speaking.
-- Avoid switching windows while dictation is active.
-- If focus restoration is unreliable in a specific app, use the simple `Win + H` workflow instead.
+- 一時入力欄が表示されてから話してください。
+- 音声入力中は、できるだけ別ウィンドウへ切り替えないでください。
+- 特定アプリでフォーカス復帰が不安定な場合は、シンプルな `Win + H` 呼び出し版を使ってください。
 
-## Japanese text becomes garbled
+## 日本語が文字化けする
 
-- Keep input files as UTF-8.
-- Use a recent PowerShell version.
-- Avoid editing scripts in tools that silently change file encoding.
+- 入力ファイルは UTF-8 のまま扱ってください。
+- 新しめの PowerShell を使ってください。
+- ファイルの文字コードを勝手に変えるエディタでスクリプトを編集しないでください。

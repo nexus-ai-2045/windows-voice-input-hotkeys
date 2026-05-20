@@ -25,5 +25,5 @@ HandleMouseWheelClick(*) {
     }
 }
 
-; Optional: uncomment the next line if you want CapsLock to start voice typing.
+; 任意: CapsLock で音声入力を始めたい場合は、次の行のコメントを外してください。
 ; CapsLock::Send "#h"

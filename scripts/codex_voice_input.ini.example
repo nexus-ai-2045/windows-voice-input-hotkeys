@@ -1,16 +1,16 @@
 [Hotkeys]
-; AutoHotkey v1 syntax.
+; AutoHotkey v1.1 の構文です。
 ; ^ = Ctrl, ! = Alt, + = Shift, # = Win
 
-; Hold this key to dictate while held.
-; Double-tap it to start hands-free dictation.
-; Press it again in hands-free mode to polish and paste.
+; 押している間だけ音声入力します。
+; ダブルタップするとハンズフリー音声入力を始めます。
+; ハンズフリー状態では、もう一度押すと Codex で整えて貼り付けます。
 HoldHotkey=RAlt
 
-; Opens the temporary dictation pad.
+; 一時入力欄を開きます。
 PadHotkey=^!Space
 
-; 1 enables mouse-wheel double-click to open the dictation pad.
-; The normal middle-click is still passed through to the active app.
+; 1 にすると、マウスホイールのダブルクリックで一時入力欄を開きます。
+; 通常の中クリックは active app へ渡します。
 EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350

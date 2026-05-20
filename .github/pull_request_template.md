@@ -1,13 +1,13 @@
-## Summary
+## 概要
 
 - 
 
-## Testing
+## 確認
 
-- [ ] Tested the changed workflow on Windows.
-- [ ] Updated README or troubleshooting docs if behavior changed.
-- [ ] Checked that no secrets, private transcripts, screenshots, or local-only paths were added.
+- [ ] 変更した workflow を Windows 実機で確認した。
+- [ ] 挙動が変わった場合は README または troubleshooting docs を更新した。
+- [ ] secrets、private transcript、screenshot、ローカル専用 path を追加していない。
 
-## Notes
+## メモ
 
  

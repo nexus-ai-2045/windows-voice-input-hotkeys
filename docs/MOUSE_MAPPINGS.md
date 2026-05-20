@@ -1,58 +1,62 @@
-# Mouse Mappings
+# マウス割り当て
 
-Mouse-wheel double click can be a comfortable way to start dictation, especially when the keyboard focus is already in the target app.
+マウスホイールのダブルクリックは、キーボードへ手を戻さずに音声入力を始めたいときに便利です。入力したいアプリにすでに focus がある場面と相性が良いです。
 
-## Built-in support
+## 組み込み対応
 
-Both scripts support mouse-wheel double click by default:
+どちらのスクリプトも、初期設定でマウスホイールのダブルクリックに対応しています。
 
-- `voice-dictation-hotkey.ahk`: toggles Windows voice typing.
-- `codex_voice_input.ahk`: opens the temporary dictation pad.
+- `voice-dictation-hotkey.ahk`: Windows 音声入力を起動または切り替えます。
+- `codex_voice_input.ahk`: Codex で整えるための一時入力欄を開きます。
 
-The normal middle-click is passed through to the active app by using the `~MButton` hotkey prefix.
+`~MButton` を使っているため、通常の中クリックも active app へ渡します。
 
-## Configuration
+## 設定
 
-For the simple AutoHotkey v2 script, copy:
+シンプルな AutoHotkey v2 版では、次をコピーします。
 
 ```text
 scripts\voice-dictation-hotkey.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\voice-dictation-hotkey.ini
 ```
 
-For the Codex AutoHotkey v1 script, copy:
+Codex 連携の AutoHotkey v1.1 版では、次をコピーします。
 
 ```text
 scripts\codex_voice_input.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\codex_voice_input.ini
 ```
 
-Then adjust:
+その後、次を調整します。
 
 ```text
 EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350
 ```
 
-Set `EnableMouseWheelDoubleClick=0` to disable the mouse mapping.
+無効化する場合:
 
-## Tradeoffs
+```text
+EnableMouseWheelDoubleClick=0
+```
 
-Middle click already has meaning in some apps:
+## 注意点
 
-- Opening links in a new browser tab.
-- Closing browser tabs.
-- Panning in design, CAD, spreadsheet, or map tools.
-- App-specific mouse gestures.
+中クリックは、アプリによって既に意味があります。
 
-The scripts pass normal middle-click through, but the target app may still react to the two middle clicks before dictation starts. If that is distracting in a specific app, disable the built-in mapping and use your mouse driver to send `Ctrl + Alt + Space` instead.
+- ブラウザでリンクを新しいタブで開く。
+- ブラウザのタブを閉じる。
+- design、CAD、spreadsheet、map tool などで pan する。
+- アプリ固有の mouse gesture。
+
+この repo のスクリプトは通常の中クリックを渡しますが、対象アプリは音声入力が始まる前の 2 回の中クリックへ反応することがあります。特定アプリで気になる場合は組み込みのマウス割り当てを無効化し、マウスドライバ側で `Ctrl + Alt + Space` を送る設定にしてください。

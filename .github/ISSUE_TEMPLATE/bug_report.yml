@@ -1,17 +1,17 @@
-name: Bug report
-description: Report a problem with a hotkey, dictation, or Codex polishing workflow.
+name: バグ報告
+description: ホットキー、音声入力、Codex 整形 workflow の問題を報告する
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a bug. Do not include passwords, API keys, private transcripts, or screenshots with sensitive content.
+        報告ありがとうございます。パスワード、API key、private transcript、機密情報を含む screenshot は書かないでください。
   - type: textarea
     id: problem
     attributes:
-      label: What happened?
-      description: Describe the behavior and what you expected instead.
+      label: 何が起きましたか？
+      description: 実際の挙動と、期待していた挙動を書いてください。
     validations:
       required: true
   - type: dropdown
@@ -19,8 +19,8 @@ body:
     attributes:
       label: Workflow
       options:
-        - Simple Windows voice typing hotkey
-        - Codex-polished voice input
+        - シンプルな Windows 音声入力 hotkey
+        - Codex で整える音声入力
         - Documentation
         - Other
     validations:
@@ -29,23 +29,23 @@ body:
     id: windows
     attributes:
       label: Windows version
-      placeholder: "Example: Windows 11 24H2"
+      placeholder: "例: Windows 11 24H2"
   - type: input
     id: ahk
     attributes:
       label: AutoHotkey version
-      placeholder: "Example: AutoHotkey v2.0.19 or v1.1.37"
+      placeholder: "例: AutoHotkey v2.0.19 または v1.1.37"
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce
-      description: Keep this free of sensitive dictated content.
+      label: 再現手順
+      description: 機密の音声入力テキストは含めないでください。
       placeholder: |
-        1. Run ...
-        2. Press ...
-        3. See ...
+        1. ... を起動する
+        2. ... を押す
+        3. ... になる
   - type: textarea
     id: notes
     attributes:
-      label: Additional notes
-      description: Include only non-sensitive logs or screenshots.
+      label: 補足
+      description: 機密情報を含まない log や screenshot だけを載せてください。

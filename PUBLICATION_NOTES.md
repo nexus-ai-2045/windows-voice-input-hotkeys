@@ -1,35 +1,35 @@
-# Publication Notes
+# 公開メモ
 
 ## Repository unit
 
-This is a good standalone repository because it has one clear purpose:
+この repo は、目的が 1 つに絞れているため独立 repo として扱いやすいです。
 
-> Faster voice input on Windows, with an optional Codex polishing workflow.
+> Windows の音声入力をすばやく呼び出し、必要なら Codex で文章を整えて貼り戻す。
 
-## Cleaned before publishing
+## 公開前に整理済み
 
-- Removed local microphone device names.
-- Removed personal Dropbox paths.
-- Avoided storing API keys or tokens.
-- Kept temporary output under `%TEMP%`.
+- ローカルのマイク device 名を削除。
+- 個人の Dropbox path を削除。
+- API key や token を保存しない構成にした。
+- 一時出力は `%TEMP%` 配下へ置く構成にした。
 
-## Suggested GitHub settings
+## GitHub 設定案
 
-- Visibility: private first
+- Visibility: まず private。
 - Topics: `windows`, `autohotkey`, `voice-input`, `dictation`, `codex`
 - Description: `AutoHotkey shortcuts for Windows voice typing and Codex-polished dictation.`
 
-## Remaining manual check
+## 残る手動確認
 
-- Confirm you are comfortable publishing under the MIT license.
-- Confirm the Codex CLI command works on the target Windows machine.
-- Decide later whether to make the repository public after private testing.
+- MIT license で公開して問題ないか確認する。
+- 対象 Windows machine で Codex CLI command が動くことを確認する。
+- private test 後に public 化するか判断する。
 
 ## Open source readiness
 
-- `OPEN_SOURCE_CHECKLIST.md` now tracks the public-release gate.
-- `SECURITY.md` explains sensitive dictation risks and security reporting.
-- `CONTRIBUTING.md` explains what changes belong here and what must stay out.
-- `TROUBLESHOOTING.md` covers common setup and runtime failures.
-- GitHub issue and pull request templates warn against sharing sensitive dictated text.
-- README now links to the public-release checklist and privacy notes.
+- `OPEN_SOURCE_CHECKLIST.md` で public 化 gate を管理する。
+- `SECURITY.md` で音声入力の機密リスクと security reporting を説明する。
+- `CONTRIBUTING.md` で入れてよい変更と入れないものを説明する。
+- `TROUBLESHOOTING.md` で common setup / runtime failure を扱う。
+- GitHub issue / pull request template で、機密の音声入力テキストを共有しないよう注意する。
+- README から public 化 checklist と privacy notes へ辿れるようにする。
