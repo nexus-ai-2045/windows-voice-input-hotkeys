@@ -1,108 +1,140 @@
 # Windows Voice Input Hotkeys
 
-Small AutoHotkey scripts for faster voice input on Windows.
+Windows 標準の音声入力を、好きなホットキーやマウスホイールのダブルクリックで呼び出すための AutoHotkey スクリプト集です。
 
-This repository has two workflows:
+Windows 音声入力そのものは、この repo がなくても `Win + H` で使えます。この repo は、`Win + H` をもっと押しやすくしたい人、マウス操作で呼び出したい人、音声入力した文章を Codex で整えてから貼り付けたい人向けです。
 
-- `voice-dictation-hotkey.ahk`: a configurable AutoHotkey v2 shortcut for Windows voice typing.
-- `codex_voice_input.ahk`: a configurable AutoHotkey v1 bridge that captures Windows voice typing, asks Codex to polish the text, then pastes the cleaned result back into the original app.
+## できること
 
-## Status
+- `Ctrl + Alt + Space` で Windows 音声入力を起動
+- マウスホイールのダブルクリックで Windows 音声入力を起動
+- `.ini` ファイルでホットキーを変更
+- Codex CLI を使って、音声入力した日本語を整えてから元のアプリへ貼り戻し
 
-This project is private-first while the workflow is being tested. See [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md) before making the repository public.
+## 構成
 
-## Simple Windows Voice Typing
+- `scripts\voice-dictation-hotkey.ahk`
+  - AutoHotkey v2 用
+  - Windows 音声入力を好きな操作で呼び出すシンプル版
+- `scripts\codex_voice_input.ahk`
+  - AutoHotkey v1.1 用
+  - 一時入力欄で音声入力し、Codex で文章を整えてから貼り戻す版
 
-Install AutoHotkey v2, then run:
+## 状態
+
+このプロジェクトは private-first でテスト中です。public にする前に [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md) を確認します。
+
+## AutoHotkey なしで使う場合
+
+Windows 標準の音声入力だけを使うなら、AutoHotkey は不要です。
+
+```text
+Win + H
+```
+
+これで現在のテキスト入力欄に対して Windows 音声入力を開始できます。
+
+## シンプル版
+
+AutoHotkey v2 を入れてから実行します。
 
 ```text
 scripts\voice-dictation-hotkey.ahk
 ```
 
-Default shortcuts:
+初期設定:
 
 ```text
 Ctrl + Alt + Space
-Mouse-wheel double click
+マウスホイールのダブルクリック
 ```
 
-This sends `Win + H`, which starts or toggles Windows voice typing in the active text field.
+どちらも `Win + H` を送信し、Windows 音声入力を起動または切り替えます。
 
-To customize, copy:
+設定を変えるには、次をコピーします。
 
 ```text
 scripts\voice-dictation-hotkey.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\voice-dictation-hotkey.ini
 ```
 
-Then edit `VoiceTypingHotkey`, `EnableMouseWheelDoubleClick`, or `MouseWheelDoubleClickMs`.
+その後、`VoiceTypingHotkey`、`EnableMouseWheelDoubleClick`、`MouseWheelDoubleClickMs` を編集します。
 
-See [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md) for AutoHotkey syntax examples.
+詳しくは [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md) を見てください。
 
-## Codex-Polished Voice Input
+## Codex で整えて貼り戻す版
 
-Install:
+必要なもの:
 
 - AutoHotkey v1.1
-- Codex CLI available as `codex`
-- Windows voice typing enabled
+- `codex` コマンドとして使える Codex CLI
+- Windows 音声入力
 
-Then run:
+実行:
 
 ```text
 scripts\codex_voice_input.ahk
 ```
 
-Shortcuts:
+初期設定:
 
-- Hold `Right Alt`: dictate while held, release to polish and paste.
-- Double-tap `Right Alt`: start hands-free dictation.
-- Press `Right Alt` again in hands-free mode: finish, polish, and paste.
-- `Ctrl + Alt + Space`: open the temporary dictation pad.
-- Mouse-wheel double click: open the temporary dictation pad.
+- `Right Alt` を押している間だけ音声入力、離すと Codex で整えて貼り付け
+- `Right Alt` を素早く2回押すとハンズフリー音声入力開始
+- ハンズフリー中に `Right Alt` を押すと、整えて貼り付け
+- `Ctrl + Alt + Space` で一時入力欄を開く
+- マウスホイールのダブルクリックで一時入力欄を開く
 
-The script opens a small temporary text box, starts Windows voice typing, sends the dictated text to `codex exec`, and pastes the polished text into the app that was active before dictation started.
+このスクリプトは小さな一時入力欄を開き、そこで Windows 音声入力を使います。入力された文章を `codex exec` に渡して整え、元のアプリに貼り戻します。
 
-If something fails, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+設定を変えるには、次をコピーします。
 
-To customize, copy `scripts\codex_voice_input.ini.example` to `scripts\codex_voice_input.ini`, then edit `HoldHotkey`, `PadHotkey`, `EnableMouseWheelDoubleClick`, or `MouseWheelDoubleClickMs`.
+```text
+scripts\codex_voice_input.ini.example
+```
 
-## Privacy and Security
+コピー先:
 
-- Dictated text may be sent to your locally configured Codex CLI provider for polishing.
-- Temporary text files are written under `%TEMP%\codex-voice-input`.
-- Do not dictate secrets, passwords, private keys, or other sensitive data unless you are comfortable with your local Codex setup handling that text.
-- This repository should not contain API keys, tokens, local machine inventories, private file paths, or device-specific personal configuration.
+```text
+scripts\codex_voice_input.ini
+```
 
-To report a security issue, see [SECURITY.md](SECURITY.md).
+その後、`HoldHotkey`、`PadHotkey`、`EnableMouseWheelDoubleClick`、`MouseWheelDoubleClickMs` を編集します。
 
-## Contributing
+## プライバシーと安全
 
-Small fixes and workflow notes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- Codex で整える版では、音声入力した文章がローカル設定済みの Codex CLI に渡されます。
+- 一時ファイルは `%TEMP%\codex-voice-input` に作られます。
+- パスワード、API キー、秘密鍵、個人情報、機密情報は音声入力しないでください。
+- この repo には API キー、トークン、端末固有の情報、個人用パス、ログ、Transcript を入れない方針です。
 
-## Project Files
+セキュリティに関する扱いは [SECURITY.md](SECURITY.md) を見てください。
 
-- [TEST_PLAN.md](TEST_PLAN.md): local Windows test checklist.
-- [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md): public-release gate.
-- [SECURITY.md](SECURITY.md): sensitive data and reporting guidance.
-- [TROUBLESHOOTING.md](TROUBLESHOOTING.md): setup and runtime fixes.
-- [CHANGELOG.md](CHANGELOG.md): notable changes.
-- [docs/PUBLIC_RELEASE.md](docs/PUBLIC_RELEASE.md): exact steps for switching from private to public.
-- [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md): local `.ini` hotkey settings.
-- [docs/MOUSE_MAPPINGS.md](docs/MOUSE_MAPPINGS.md): notes on mouse-wheel double-click mappings.
+## テスト
 
-## Notes
+Windows 実機での確認手順は [TEST_PLAN.md](TEST_PLAN.md) にあります。
 
-- The simple hotkey script uses AutoHotkey v2 syntax.
-- The Codex bridge uses AutoHotkey v1 syntax.
-- Local `.ini` files are ignored by Git, so personal hotkey preferences stay local.
-- Temporary files are written under `%TEMP%\codex-voice-input`.
-- No API key is stored in this repository. The Codex bridge relies on your local Codex CLI authentication.
+## 関連ドキュメント
+
+- [TEST_PLAN.md](TEST_PLAN.md): Windows 実機での確認手順
+- [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md): public 化前の確認
+- [SECURITY.md](SECURITY.md): セキュリティと機密情報の扱い
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md): 困ったときの確認
+- [CHANGELOG.md](CHANGELOG.md): 変更履歴
+- [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md): ホットキー設定
+- [docs/MOUSE_MAPPINGS.md](docs/MOUSE_MAPPINGS.md): マウスホイールダブルクリック
+- [docs/PUBLIC_RELEASE.md](docs/PUBLIC_RELEASE.md): public 化手順
+
+## メモ
+
+- シンプル版は AutoHotkey v2 構文です。
+- Codex 版は AutoHotkey v1.1 構文です。
+- ローカル `.ini` ファイルは Git で無視されるので、個人設定は repo に入りません。
+- API キーは保存しません。Codex 版は、手元の Codex CLI 認証を使います。
 
 ## License
 

@@ -1,73 +1,73 @@
-# Test Plan
+# テスト計画
 
-Use this before making the repository public.
+public にする前に、Windows 実機でこの手順を確認します。
 
-## Environment
+## 環境
 
 - Windows 11
-- AutoHotkey v2 for `scripts\voice-dictation-hotkey.ahk`
-- AutoHotkey v1.1 for `scripts\codex_voice_input.ahk`
-- Codex CLI available as `codex` for Codex-polished voice input
-- Windows voice typing works when pressing `Win + H`
+- `scripts\voice-dictation-hotkey.ahk` 用の AutoHotkey v2
+- `scripts\codex_voice_input.ahk` 用の AutoHotkey v1.1
+- Codex 版を使う場合は、PowerShell で `codex --version` が通ること
+- `Win + H` で Windows 音声入力が動くこと
 
-## Simple Windows Voice Typing
+## シンプル版
 
-1. Run `scripts\voice-dictation-hotkey.ahk` with AutoHotkey v2.
-2. Put the cursor in a normal text field.
-3. Press `Ctrl + Alt + Space`.
-4. Confirm Windows voice typing opens.
-5. Press `Ctrl + Alt + Space` again.
-6. Confirm Windows voice typing toggles or closes.
-7. Double-click the mouse wheel.
-8. Confirm Windows voice typing opens.
-9. Confirm normal middle-click behavior still works in a browser tab.
+1. AutoHotkey v2 で `scripts\voice-dictation-hotkey.ahk` を起動する。
+2. メモ帳などの普通のテキスト入力欄にカーソルを置く。
+3. `Ctrl + Alt + Space` を押す。
+4. Windows 音声入力が開くことを確認する。
+5. もう一度 `Ctrl + Alt + Space` を押す。
+6. Windows 音声入力が切り替わる、または閉じることを確認する。
+7. マウスホイールをダブルクリックする。
+8. Windows 音声入力が開くことを確認する。
+9. ブラウザなどで、通常の中クリックが完全に壊れていないことを確認する。
 
-## Simple Hotkey Configuration
+## シンプル版の設定変更
 
-1. Copy `scripts\voice-dictation-hotkey.ini.example` to `scripts\voice-dictation-hotkey.ini`.
-2. Change `VoiceTypingHotkey` to a temporary test value, such as `F13` or `CapsLock`.
-3. Restart `scripts\voice-dictation-hotkey.ahk`.
-4. Confirm the new hotkey toggles Windows voice typing.
-5. Set `EnableMouseWheelDoubleClick=0`.
-6. Restart the script.
-7. Confirm mouse-wheel double-click no longer opens Windows voice typing.
+1. `scripts\voice-dictation-hotkey.ini.example` を `scripts\voice-dictation-hotkey.ini` にコピーする。
+2. `VoiceTypingHotkey` を一時的なテスト値に変える。例: `F13` または `CapsLock`
+3. `scripts\voice-dictation-hotkey.ahk` を再起動する。
+4. 新しいホットキーで Windows 音声入力が開くことを確認する。
+5. `EnableMouseWheelDoubleClick=0` にする。
+6. スクリプトを再起動する。
+7. マウスホイールのダブルクリックで Windows 音声入力が開かないことを確認する。
 
-## Codex-Polished Voice Input
+## Codex 版
 
-1. Confirm `codex --version` works in PowerShell.
-2. Run `scripts\codex_voice_input.ahk` with AutoHotkey v1.1.
-3. Put the cursor in a normal text field.
-4. Hold `Right Alt`.
-5. Confirm the temporary dictation pad opens and Windows voice typing starts.
-6. Speak a short harmless test sentence.
-7. Release `Right Alt`.
-8. Confirm Codex polishes the text and pastes it into the original app.
-9. Double-click the mouse wheel.
-10. Confirm the temporary dictation pad opens.
-11. Press `Right Alt`.
-12. Confirm Codex polishes and pastes.
+1. PowerShell で `codex --version` が通ることを確認する。
+2. AutoHotkey v1.1 で `scripts\codex_voice_input.ahk` を起動する。
+3. メモ帳などの普通のテキスト入力欄にカーソルを置く。
+4. `Right Alt` を押し続ける。
+5. 一時入力欄が開き、Windows 音声入力が始まることを確認する。
+6. 短く無害なテスト文を話す。
+7. `Right Alt` を離す。
+8. Codex が文章を整えて、元のアプリに貼り付けることを確認する。
+9. マウスホイールをダブルクリックする。
+10. 一時入力欄が開くことを確認する。
+11. `Right Alt` を押す。
+12. Codex が文章を整えて貼り付けることを確認する。
 
-## Codex Hotkey Configuration
+## Codex 版の設定変更
 
-1. Copy `scripts\codex_voice_input.ini.example` to `scripts\codex_voice_input.ini`.
-2. Change `PadHotkey` to a temporary test value, such as `F13`.
-3. Restart `scripts\codex_voice_input.ahk`.
-4. Confirm the new pad hotkey opens the temporary dictation pad.
-5. Set `EnableMouseWheelDoubleClick=0`.
-6. Restart the script.
-7. Confirm mouse-wheel double-click no longer opens the temporary dictation pad.
+1. `scripts\codex_voice_input.ini.example` を `scripts\codex_voice_input.ini` にコピーする。
+2. `PadHotkey` を一時的なテスト値に変える。例: `F13`
+3. `scripts\codex_voice_input.ahk` を再起動する。
+4. 新しいホットキーで一時入力欄が開くことを確認する。
+5. `EnableMouseWheelDoubleClick=0` にする。
+6. スクリプトを再起動する。
+7. マウスホイールのダブルクリックで一時入力欄が開かないことを確認する。
 
-## Privacy Check
+## プライバシー確認
 
-- Do not dictate secrets, passwords, API keys, or private content during tests.
-- Delete local `.ini` files if they contain personal preferences you do not want to keep.
-- Confirm no generated `.ini`, `.txt`, `.wav`, or transcript files are staged in Git.
+- テスト中に、パスワード、API キー、秘密情報、個人情報、機密情報を音声入力しない。
+- 個人設定を残したくない場合は、ローカル `.ini` ファイルを削除する。
+- `.ini`、`.txt`、`.wav`、transcript 系の生成ファイルが Git に stage されていないことを確認する。
 
-## Pass Criteria
+## 合格条件
 
-- Both workflows start from documented default hotkeys.
-- Mouse-wheel double-click works by default.
-- Mouse-wheel double-click can be disabled from `.ini`.
-- Primary hotkeys can be changed without editing scripts.
-- Codex-polished workflow falls back to raw text if polishing fails.
-- `git status --short --branch` is clean after testing.
+- どちらのワークフローも初期ホットキーで起動する。
+- マウスホイールのダブルクリックが初期状態で動く。
+- マウスホイールのダブルクリックを `.ini` で無効化できる。
+- 主要ホットキーをスクリプト編集なしで変更できる。
+- Codex 版は、整形に失敗した場合に raw text を貼り付ける。
+- テスト後に `git status --short --branch` が clean。

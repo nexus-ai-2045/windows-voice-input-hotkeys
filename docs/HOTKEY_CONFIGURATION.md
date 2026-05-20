@@ -1,22 +1,24 @@
-# Hotkey Configuration
+# ホットキー設定
 
-Hotkeys are configured with local `.ini` files next to each script. These files are ignored by Git, so your personal shortcuts stay local.
+ホットキーは、各スクリプトの横に置くローカル `.ini` ファイルで設定します。
 
-## Simple Windows voice typing
+`.ini` ファイルは Git で無視されます。自分用のショートカット設定は repo に入りません。
 
-Copy:
+## シンプル版
+
+次をコピーします。
 
 ```text
 scripts\voice-dictation-hotkey.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\voice-dictation-hotkey.ini
 ```
 
-Example:
+例:
 
 ```ini
 [Hotkeys]
@@ -25,21 +27,21 @@ EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350
 ```
 
-## Codex-polished voice input
+## Codex 版
 
-Copy:
+次をコピーします。
 
 ```text
 scripts\codex_voice_input.ini.example
 ```
 
-to:
+コピー先:
 
 ```text
 scripts\codex_voice_input.ini
 ```
 
-Example:
+例:
 
 ```ini
 [Hotkeys]
@@ -49,40 +51,42 @@ EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350
 ```
 
-## AutoHotkey symbols
+## AutoHotkey の記号
 
-Common modifier symbols:
+よく使う修飾キー:
 
 ```text
 ^  Ctrl
 !  Alt
 +  Shift
-#  Windows key
+#  Windows キー
 ```
 
-Examples:
+例:
 
 ```text
 ^!Space     Ctrl + Alt + Space
 #+Space     Windows + Shift + Space
-CapsLock    Caps Lock
-RAlt        Right Alt
+CapsLock    CapsLock
+RAlt        右 Alt
 F13         F13
 ```
 
-## Mouse-wheel double click
+## マウスホイールのダブルクリック
 
-Mouse-wheel double click is enabled by default:
+初期状態では有効です。
 
 ```ini
 EnableMouseWheelDoubleClick=1
 MouseWheelDoubleClickMs=350
 ```
 
-Set it to `0` to disable:
+無効にする場合:
 
 ```ini
 EnableMouseWheelDoubleClick=0
 ```
 
-The scripts pass normal middle-click through to the active app. Some apps may still react to the two middle clicks before dictation starts; if that bothers you, disable this feature and use your mouse driver to send a keyboard shortcut instead.
+通常の中クリックはアクティブなアプリへ通します。ただし、アプリによっては音声入力が始まる前に2回分の中クリックに反応することがあります。
+
+それが気になる場合は、この機能を無効にして、マウスドライバ側で `Ctrl + Alt + Space` などを送る設定にしてください。
