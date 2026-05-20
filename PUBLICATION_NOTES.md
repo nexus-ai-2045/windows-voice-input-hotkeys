@@ -30,4 +30,6 @@ This is a good standalone repository because it has one clear purpose:
 - `OPEN_SOURCE_CHECKLIST.md` now tracks the public-release gate.
 - `SECURITY.md` explains sensitive dictation risks and security reporting.
 - `CONTRIBUTING.md` explains what changes belong here and what must stay out.
+- `TROUBLESHOOTING.md` covers common setup and runtime failures.
+- GitHub issue and pull request templates warn against sharing sensitive dictated text.
 - README now links to the public-release checklist and privacy notes.

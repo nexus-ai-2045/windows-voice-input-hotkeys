@@ -11,6 +11,8 @@ Use this before changing the repository from private to public.
 - Confirm the license is intentional. This repository currently uses MIT.
 - Confirm security reporting instructions exist in `SECURITY.md`.
 - Confirm contribution expectations exist in `CONTRIBUTING.md`.
+- Confirm troubleshooting notes exist in `TROUBLESHOOTING.md`.
+- Confirm issue and pull request templates warn against sharing sensitive dictated content.
 - Confirm scripts do not run destructive commands or change system settings without making that behavior obvious.
 - Test both documented workflows on a Windows machine.
 
@@ -18,7 +20,6 @@ Use this before changing the repository from private to public.
 
 - Add screenshots or a short GIF showing the dictation pad.
 - Add a table of supported AutoHotkey versions.
-- Add troubleshooting notes for Windows voice typing, Codex CLI auth, and PowerShell execution policy.
 - Add a release tag such as `v0.1.0`.
 
 ## Public release settings

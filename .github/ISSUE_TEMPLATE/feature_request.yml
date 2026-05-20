@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest a workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Keep examples generic and avoid private dictated text.
+  - type: textarea
+    id: need
+    attributes:
+      label: What workflow should improve?
+      description: Describe the user need, not just the implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed behavior
+      description: What should happen?
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Hotkey mapping
+        - Dictation pad
+        - Codex polishing
+        - Documentation
+        - Other
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Tradeoffs or conflicts
+      description: Mention known shortcut conflicts or app-specific concerns.

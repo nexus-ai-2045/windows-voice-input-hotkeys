@@ -27,6 +27,8 @@ Ctrl + Alt + Space
 
 This sends `Win + H`, which starts or toggles Windows voice typing in the active text field.
 
+Some mouse utilities can map a mouse-wheel double click to the same shortcut. If you already use that pattern, keep the mapping in your mouse software so this script stays simple and portable.
+
 ## Codex-Polished Voice Input
 
 Install:
@@ -50,6 +52,8 @@ Shortcuts:
 
 The script opens a small temporary text box, starts Windows voice typing, sends the dictated text to `codex exec`, and pastes the polished text into the app that was active before dictation started.
 
+If something fails, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+
 ## Privacy and Security
 
 - Dictated text may be sent to your locally configured Codex CLI provider for polishing.
@@ -62,6 +66,13 @@ To report a security issue, see [SECURITY.md](SECURITY.md).
 ## Contributing
 
 Small fixes and workflow notes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Project Files
+
+- [OPEN_SOURCE_CHECKLIST.md](OPEN_SOURCE_CHECKLIST.md): public-release gate.
+- [SECURITY.md](SECURITY.md): sensitive data and reporting guidance.
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md): setup and runtime fixes.
+- [CHANGELOG.md](CHANGELOG.md): notable changes.
 
 ## Notes
 
