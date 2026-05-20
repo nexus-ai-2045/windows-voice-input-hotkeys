@@ -15,7 +15,7 @@
 
 ## GitHub 設定案
 
-- Visibility: まず private。
+- Visibility: public。
 - Topics: `windows`, `autohotkey`, `voice-input`, `dictation`, `codex`
 - Description: `AutoHotkey shortcuts for Windows voice typing and Codex-polished dictation.`
 
@@ -23,7 +23,7 @@
 
 - MIT license で公開して問題ないか確認する。
 - 対象 Windows machine で Codex CLI command が動くことを確認する。
-- private test 後に public 化するか判断する。
+- public 化後も、実機での追加確認結果を README / TEST_PLAN に反映する。
 
 ## Open source readiness
 
