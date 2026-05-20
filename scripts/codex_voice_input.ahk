@@ -3,6 +3,11 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
+global cvConfigPath := A_ScriptDir "\codex_voice_input.ini"
+global cvHoldHotkey := CV_ReadConfig("HoldHotkey", "RAlt")
+global cvPadHotkey := CV_ReadConfig("PadHotkey", "^!Space")
+global cvEnableMouseWheelDoubleClick := CV_ReadConfig("EnableMouseWheelDoubleClick", "1")
+global cvMouseWheelDoubleClickMs := CV_ReadConfig("MouseWheelDoubleClickMs", "350")
 global cvActive := false
 global cvHandsFree := false
 global cvPendingTap := false
@@ -10,12 +15,22 @@ global cvDownTick := 0
 global cvOriginalHwnd := 0
 global cvInputPath := ""
 global cvOutputPath := ""
+global cvLastMButtonTick := 0
 
 ; Right Alt behavior:
 ; - Hold RAlt: dictate while held, release to let Codex polish and paste.
 ; - Double-tap RAlt: start hands-free dictation.
 ; - Press RAlt again in hands-free mode: finish, let Codex polish, and paste.
-RAlt::
+Hotkey, %cvHoldHotkey%, CV_HoldHotkey
+Hotkey, %cvPadHotkey%, CV_OpenDictationPad
+
+if (cvEnableMouseWheelDoubleClick = "1") {
+    Hotkey, ~MButton, CV_MouseWheelClick
+}
+
+return
+
+CV_HoldHotkey:
     if (cvActive && cvHandsFree) {
         Gosub, CV_FinishAndPaste
         return
@@ -53,11 +68,24 @@ RAlt::
 return
 
 ; Fallback: open the temporary dictation pad without using Right Alt timing.
-^!Space::
+CV_OpenDictationPad:
     if (!cvActive) {
         cvHandsFree := true
         Gosub, CV_StartDictation
         TrayTip, Codex Voice Input, Dictation pad opened. Press Right Alt to paste., 3, 1
+    }
+return
+
+CV_MouseWheelClick:
+    if (A_TickCount - cvLastMButtonTick <= cvMouseWheelDoubleClickMs) {
+        cvLastMButtonTick := 0
+        if (!cvActive) {
+            cvHandsFree := true
+            Gosub, CV_StartDictation
+            TrayTip, Codex Voice Input, Dictation pad opened. Press %cvHoldHotkey% to paste., 3, 1
+        }
+    } else {
+        cvLastMButtonTick := A_TickCount
     }
 return
 
@@ -139,4 +167,10 @@ SetClipboard(text) {
     Clipboard :=
     Clipboard := text
     ClipWait, 1
+}
+
+CV_ReadConfig(key, defaultValue) {
+    global cvConfigPath
+    IniRead, value, %cvConfigPath%, Hotkeys, %key%, %defaultValue%
+    return value
 }

@@ -9,23 +9,44 @@
 
 ## `Ctrl + Alt + Space` conflicts with another app
 
-Edit `scripts\voice-dictation-hotkey.ahk` and change the hotkey line:
+Copy:
 
-```ahk
-^!Space::Send "#h"
+```text
+scripts\voice-dictation-hotkey.ini.example
 ```
 
-For example, `CapsLock` can be used instead:
+to:
 
-```ahk
-CapsLock::Send "#h"
+```text
+scripts\voice-dictation-hotkey.ini
+```
+
+Then edit:
+
+```ini
+VoiceTypingHotkey=^!Space
+```
+
+For example:
+
+```ini
+VoiceTypingHotkey=CapsLock
 ```
 
 ## Mouse-wheel double click already starts dictation
 
-Some mouse drivers and utilities can map wheel double-click to a keyboard shortcut such as `Ctrl + Alt + Space` or `Win + H`.
+Mouse-wheel double click is supported by default.
 
-That is a good place to keep mouse-specific behavior because it avoids interfering with normal middle-click behavior in browsers, editors, and CAD-style tools.
+To tune or disable it, edit the relevant local `.ini` file:
+
+```ini
+EnableMouseWheelDoubleClick=1
+MouseWheelDoubleClickMs=350
+```
+
+Set `EnableMouseWheelDoubleClick=0` to disable it.
+
+The normal middle-click is passed through, but some apps may still respond to the double middle-click before dictation starts. If that is a problem, disable the built-in mapping and use mouse software to send `Ctrl + Alt + Space` instead.
 
 ## Codex polishing does not run
 

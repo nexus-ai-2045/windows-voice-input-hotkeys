@@ -1,0 +1,9 @@
+[Hotkeys]
+; AutoHotkey v2 syntax.
+; ^ = Ctrl, ! = Alt, + = Shift, # = Win
+VoiceTypingHotkey=^!Space
+
+; 1 enables mouse-wheel double-click to toggle Windows voice typing.
+; The normal middle-click is still passed through to the active app.
+EnableMouseWheelDoubleClick=1
+MouseWheelDoubleClickMs=350

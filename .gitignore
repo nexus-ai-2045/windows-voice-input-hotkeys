@@ -14,6 +14,9 @@ Desktop.ini
 *.transcript.txt
 *.output.txt
 
+# Local hotkey configuration
+scripts/*.ini
+
 # Secrets and local environment
 .env
 .env.*

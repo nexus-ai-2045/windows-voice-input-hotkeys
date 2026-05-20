@@ -4,8 +4,8 @@ Small AutoHotkey scripts for faster voice input on Windows.
 
 This repository has two workflows:
 
-- `voice-dictation-hotkey.ahk`: a tiny AutoHotkey v2 shortcut for Windows voice typing.
-- `codex_voice_input.ahk`: an AutoHotkey v1 bridge that captures Windows voice typing, asks Codex to polish the text, then pastes the cleaned result back into the original app.
+- `voice-dictation-hotkey.ahk`: a configurable AutoHotkey v2 shortcut for Windows voice typing.
+- `codex_voice_input.ahk`: a configurable AutoHotkey v1 bridge that captures Windows voice typing, asks Codex to polish the text, then pastes the cleaned result back into the original app.
 
 ## Status
 
@@ -19,15 +19,30 @@ Install AutoHotkey v2, then run:
 scripts\voice-dictation-hotkey.ahk
 ```
 
-Shortcut:
+Default shortcuts:
 
 ```text
 Ctrl + Alt + Space
+Mouse-wheel double click
 ```
 
 This sends `Win + H`, which starts or toggles Windows voice typing in the active text field.
 
-Some mouse utilities can map a mouse-wheel double click to the same shortcut. If you already use that pattern, keep the mapping in your mouse software so this script stays simple and portable.
+To customize, copy:
+
+```text
+scripts\voice-dictation-hotkey.ini.example
+```
+
+to:
+
+```text
+scripts\voice-dictation-hotkey.ini
+```
+
+Then edit `VoiceTypingHotkey`, `EnableMouseWheelDoubleClick`, or `MouseWheelDoubleClickMs`.
+
+See [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md) for AutoHotkey syntax examples.
 
 ## Codex-Polished Voice Input
 
@@ -49,10 +64,13 @@ Shortcuts:
 - Double-tap `Right Alt`: start hands-free dictation.
 - Press `Right Alt` again in hands-free mode: finish, polish, and paste.
 - `Ctrl + Alt + Space`: open the temporary dictation pad.
+- Mouse-wheel double click: open the temporary dictation pad.
 
 The script opens a small temporary text box, starts Windows voice typing, sends the dictated text to `codex exec`, and pastes the polished text into the app that was active before dictation started.
 
 If something fails, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+
+To customize, copy `scripts\codex_voice_input.ini.example` to `scripts\codex_voice_input.ini`, then edit `HoldHotkey`, `PadHotkey`, `EnableMouseWheelDoubleClick`, or `MouseWheelDoubleClickMs`.
 
 ## Privacy and Security
 
@@ -74,12 +92,14 @@ Small fixes and workflow notes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.m
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md): setup and runtime fixes.
 - [CHANGELOG.md](CHANGELOG.md): notable changes.
 - [docs/PUBLIC_RELEASE.md](docs/PUBLIC_RELEASE.md): exact steps for switching from private to public.
+- [docs/HOTKEY_CONFIGURATION.md](docs/HOTKEY_CONFIGURATION.md): local `.ini` hotkey settings.
 - [docs/MOUSE_MAPPINGS.md](docs/MOUSE_MAPPINGS.md): notes on mouse-wheel double-click mappings.
 
 ## Notes
 
 - The simple hotkey script uses AutoHotkey v2 syntax.
 - The Codex bridge uses AutoHotkey v1 syntax.
+- Local `.ini` files are ignored by Git, so personal hotkey preferences stay local.
 - Temporary files are written under `%TEMP%\codex-voice-input`.
 - No API key is stored in this repository. The Codex bridge relies on your local Codex CLI authentication.
 

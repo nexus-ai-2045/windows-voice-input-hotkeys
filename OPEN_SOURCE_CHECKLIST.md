@@ -14,6 +14,7 @@ Use this before changing the repository from private to public.
 - Confirm troubleshooting notes exist in `TROUBLESHOOTING.md`.
 - Confirm issue and pull request templates warn against sharing sensitive dictated content.
 - Confirm `docs/PUBLIC_RELEASE.md` has the current public-release steps.
+- Confirm `docs/HOTKEY_CONFIGURATION.md` explains how to customize hotkeys without editing scripts.
 - Confirm mouse-specific behavior is documented without breaking normal middle-click behavior.
 - Confirm scripts do not run destructive commands or change system settings without making that behavior obvious.
 - Test both documented workflows on a Windows machine.

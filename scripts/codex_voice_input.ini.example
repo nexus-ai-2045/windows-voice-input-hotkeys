@@ -1,0 +1,16 @@
+[Hotkeys]
+; AutoHotkey v1 syntax.
+; ^ = Ctrl, ! = Alt, + = Shift, # = Win
+
+; Hold this key to dictate while held.
+; Double-tap it to start hands-free dictation.
+; Press it again in hands-free mode to polish and paste.
+HoldHotkey=RAlt
+
+; Opens the temporary dictation pad.
+PadHotkey=^!Space
+
+; 1 enables mouse-wheel double-click to open the dictation pad.
+; The normal middle-click is still passed through to the active app.
+EnableMouseWheelDoubleClick=1
+MouseWheelDoubleClickMs=350

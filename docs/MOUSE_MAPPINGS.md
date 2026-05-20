@@ -2,45 +2,57 @@
 
 Mouse-wheel double click can be a comfortable way to start dictation, especially when the keyboard focus is already in the target app.
 
-## Recommended approach
+## Built-in support
 
-Prefer mapping mouse-wheel double click in your mouse driver or mouse utility to one of these shortcuts:
+Both scripts support mouse-wheel double click by default:
+
+- `voice-dictation-hotkey.ahk`: toggles Windows voice typing.
+- `codex_voice_input.ahk`: opens the temporary dictation pad.
+
+The normal middle-click is passed through to the active app by using the `~MButton` hotkey prefix.
+
+## Configuration
+
+For the simple AutoHotkey v2 script, copy:
 
 ```text
-Win + H
+scripts\voice-dictation-hotkey.ini.example
 ```
 
-or:
+to:
 
 ```text
-Ctrl + Alt + Space
+scripts\voice-dictation-hotkey.ini
 ```
 
-Keeping mouse-specific behavior outside the AutoHotkey scripts avoids breaking normal middle-click behavior in browsers, terminals, editors, 3D tools, and other apps where middle click already has meaning.
+For the Codex AutoHotkey v1 script, copy:
 
-## Why it is not hardcoded
+```text
+scripts\codex_voice_input.ini.example
+```
 
-AutoHotkey can intercept `MButton`, but doing so can interfere with:
+to:
+
+```text
+scripts\codex_voice_input.ini
+```
+
+Then adjust:
+
+```text
+EnableMouseWheelDoubleClick=1
+MouseWheelDoubleClickMs=350
+```
+
+Set `EnableMouseWheelDoubleClick=0` to disable the mouse mapping.
+
+## Tradeoffs
+
+Middle click already has meaning in some apps:
 
 - Opening links in a new browser tab.
 - Closing browser tabs.
 - Panning in design, CAD, spreadsheet, or map tools.
 - App-specific mouse gestures.
 
-For that reason, this repository documents the mapping but does not force it by default.
-
-## Optional AutoHotkey v2 experiment
-
-If you still want to handle it in AutoHotkey v2, test carefully:
-
-```ahk
-MButton::{
-    if (A_PriorHotkey = "MButton" && A_TimeSincePriorHotkey < 350) {
-        Send "#h"
-    } else {
-        Send "{MButton}"
-    }
-}
-```
-
-This is intentionally not included in the default script because the first middle click still reaches the active app.
+The scripts pass normal middle-click through, but the target app may still react to the two middle clicks before dictation starts. If that is distracting in a specific app, disable the built-in mapping and use your mouse driver to send `Ctrl + Alt + Space` instead.
